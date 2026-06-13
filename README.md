@@ -33,7 +33,7 @@ Sistema solar interactivo hecho con Three.js y Vite.
 ## Install
 
 ```bash
-git clone https://github.com/hectormoreira/learning-threejs.git
+git clone https://github.com/hmoreirar/learning-threejs.git
 cd learning-threejs
 npm install
 npm run dev
