@@ -34,7 +34,7 @@ export function startAnimation({
 
     timer.update()
     const deltaTime = timer.getDelta()
-    const elapsed = timer.getElapsedTime()
+    const elapsed = timer.getElapsed()
 
     // Sol
     sun.rotation.y += SUN_ROTATION_SPEED * deltaTime
@@ -119,7 +119,7 @@ function setupCinematicToggle() {
     if (e.key.toLowerCase() === 'c') {
       cinematicMode = !cinematicMode
       isAnimatingCamera = true
-      cameraAnimStart = timer.getElapsedTime()
+      cameraAnimStart = timer.getElapsed()
     }
   })
 }
