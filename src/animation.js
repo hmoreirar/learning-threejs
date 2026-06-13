@@ -11,7 +11,7 @@ import {
   CAMERA_CINEMATIC_HEIGHT_FREQ
 } from './constants.js'
 
-const clock = new THREE.Clock()
+const timer = new THREE.Timer()
 let cinematicMode = false
 let isAnimatingCamera = false
 let cameraAnimStart = 0
@@ -32,8 +32,9 @@ export function startAnimation({
   function animate() {
     requestAnimationFrame(animate)
 
-    const deltaTime = clock.getDelta()
-    const elapsed = clock.getElapsedTime()
+    timer.update()
+    const deltaTime = timer.getDelta()
+    const elapsed = timer.getElapsedTime()
 
     // Sol
     sun.rotation.y += SUN_ROTATION_SPEED * deltaTime
@@ -118,7 +119,7 @@ function setupCinematicToggle() {
     if (e.key.toLowerCase() === 'c') {
       cinematicMode = !cinematicMode
       isAnimatingCamera = true
-      cameraAnimStart = clock.getElapsedTime()
+      cameraAnimStart = timer.getElapsedTime()
     }
   })
 }

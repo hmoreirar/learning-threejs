@@ -17,7 +17,7 @@ export function initScene() {
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO))
   renderer.shadowMap.enabled = true
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap
+  renderer.shadowMap.type = THREE.PCFShadowMap
   renderer.toneMapping = THREE.AgXToneMapping
   renderer.toneMappingExposure = 1.5
   renderer.outputColorSpace = THREE.SRGBColorSpace
