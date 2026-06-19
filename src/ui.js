@@ -11,7 +11,7 @@ import {
 } from './constants.js'
 
 let infoTimeout = null
-let speedMultiplier = 1
+export let speedMultiplier = 1
 
 export function initUI(camera, renderer, canvas, clickables, planets, flareSprite, flareGhosts) {
   createInfoOverlay()

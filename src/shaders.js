@@ -100,3 +100,27 @@ export const STAR_FRAGMENT_SHADER = `
     gl_FragColor = vec4(color, alpha * 0.8);
   }
 `
+
+export const GALAXY_VERTEX_SHADER = `
+  attribute float aSize;
+  attribute vec3 aColor;
+  varying vec3 vColor;
+  void main() {
+    vColor = aColor;
+    vec4 viewPos = viewMatrix * modelMatrix * vec4(position, 1.0);
+    gl_Position = projectionMatrix * viewPos;
+    gl_PointSize = aSize * 200.0 * (1.0 / -viewPos.z);
+  }
+`
+
+export const GALAXY_FRAGMENT_SHADER = `
+  varying vec3 vColor;
+  void main() {
+    vec2 center = gl_PointCoord - vec2(0.5);
+    float dist = length(center);
+    if (dist > 0.5) discard;
+    float alpha = 1.0 - smoothstep(0.2, 0.5, dist);
+    vec3 color = vColor + vec3(0.1) * (1.0 - smoothstep(0.0, 0.3, dist));
+    gl_FragColor = vec4(color, alpha * 0.85);
+  }
+`

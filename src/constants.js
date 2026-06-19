@@ -43,6 +43,28 @@ export const BLOOM_THRESHOLD = 0.6
 // Hover
 export const HOVER_THROTTLE_MS = 50
 
+// Galaxia Via Lactea
+export const GALAXY_RADIUS = 180
+export const GALAXY_DISK_THICKNESS = 10
+export const GALAXY_BULGE_RADIUS = 25
+export const GALAXY_ARM_COUNT = 4
+export const GALAXY_ARM_SPREAD = 0.35
+export const GALAXY_ARM_TURNS = 3
+export const GALAXY_STAR_COUNT = 20000
+export const GALAXY_CORE_DIST = 60
+
+// Deriva del sistema solar
+export const DRIFT_SPEED = 0.03
+export const DRIFT_AXIS_X = 0
+export const DRIFT_AXIS_Y = 0
+export const DRIFT_AXIS_Z = -1
+
+// Polvo galactico
+export const DUST_COUNT = 2500
+export const DUST_SPREAD = 30
+export const DUST_SIZE_MIN = 0.025
+export const DUST_SIZE_MAX = 0.08
+
 // Velocidades predefinidas
 export const SPEED_PRESETS = [
   { label: '\u23F8', value: 0 },

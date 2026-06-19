@@ -6,7 +6,7 @@ import { MAX_PIXEL_RATIO } from './constants.js'
 export function initScene() {
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(0x040418)
-  scene.fog = new THREE.Fog(0x000008, 80, 160)
+  scene.fog = new THREE.Fog(0x000008, 150, 350)
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 500)
   camera.position.set(12, 8, 18)

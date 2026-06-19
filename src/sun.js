@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { SUN_VERTEX_SHADER, SUN_FRAGMENT_SHADER } from './shaders.js'
 import { SHADOW_MAP_SIZE } from './constants.js'
 
-export function createSun(scene, sunTexture) {
+export function createSun(parent, scene, sunTexture) {
   const sunGeo = new THREE.SphereGeometry(2.5, 48, 48)
   const sunMat = new THREE.ShaderMaterial({
     uniforms: {
@@ -14,7 +14,7 @@ export function createSun(scene, sunTexture) {
     side: THREE.FrontSide
   })
   const sun = new THREE.Mesh(sunGeo, sunMat)
-  scene.add(sun)
+  parent.add(sun)
 
   const sunLight = new THREE.PointLight(0xffeedd, 6, 100)
   sunLight.position.set(0, 0, 0)
@@ -23,7 +23,7 @@ export function createSun(scene, sunTexture) {
   sunLight.shadow.mapSize.height = SHADOW_MAP_SIZE
   sunLight.shadow.camera.near = 0.5
   sunLight.shadow.camera.far = 60
-  scene.add(sunLight)
+  parent.add(sunLight)
 
   const ambientLight = new THREE.AmbientLight(0x333366, 0.4)
   scene.add(ambientLight)
@@ -50,7 +50,7 @@ export function createSun(scene, sunTexture) {
   })
   const glowSprite = new THREE.Sprite(glowMat)
   glowSprite.scale.set(10, 10, 1)
-  scene.add(glowSprite)
+  parent.add(glowSprite)
 
   // Flare sprite
   const flareSize = 128
@@ -89,7 +89,7 @@ export function createSun(scene, sunTexture) {
   })
   const flareSprite = new THREE.Sprite(flareMat)
   flareSprite.scale.set(6, 6, 1)
-  scene.add(flareSprite)
+  parent.add(flareSprite)
 
   // Lens flare ghosts
   function createFlareGhost(color, size, dist, opacity) {
@@ -128,7 +128,7 @@ export function createSun(scene, sunTexture) {
 
   flareGhosts.forEach((g) => {
     g.position.set(0, 0, 0)
-    scene.add(g)
+    parent.add(g)
   })
 
   return { sun, sunMat, sunLight, glowSprite, flareSprite, flareGhosts, ambientLight }

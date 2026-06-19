@@ -153,43 +153,43 @@ export const planetData = [
   }
 ]
 
-export function createPlanets(scene, textures, cloudTexture) {
+export function createPlanets(parent, textures, cloudTexture) {
   const clickables = []
   const planets = []
 
   planetData.forEach((info) => {
-    const result = createPlanet(scene, info, textures, cloudTexture)
+    const result = createPlanet(parent, info, textures, cloudTexture)
     planets.push(result)
     clickables.push({ mesh: result.mesh, info })
   })
 
   // Luna de la Tierra
   const earth = planets.find((p) => p.info.name === 'Tierra')
-  const moonResult = createMoon(scene, earth, textures.moon, 0.5, 0.1, 0.008)
+  const moonResult = createMoon(parent, earth, textures.moon, 0.5, 0.1, 0.008)
   planets.push(moonResult)
 
-  // Lunas de J\u00FApiter
-  const jupiter = planets.find((p) => p.info.name === 'J\u00FApiter')
+  // Lunas de Júpiter
+  const jupiter = planets.find((p) => p.info.name === 'Júpiter')
   const jupiterMoonData = [
-    { name: '\u00CDo',       orbit: 1.8, size: 0.06, speed: 0.8 },
+    { name: 'Ío',       orbit: 1.8, size: 0.06, speed: 0.8 },
     { name: 'Europa',   orbit: 2.3, size: 0.05, speed: 0.6 },
-    { name: 'Gan\u00EDmedes', orbit: 3.0, size: 0.08, speed: 0.4 },
+    { name: 'Ganímedes', orbit: 3.0, size: 0.08, speed: 0.4 },
     { name: 'Calisto',  orbit: 3.8, size: 0.07, speed: 0.3 }
   ]
 
   jupiterMoonData.forEach((m) => {
-    const moonP = createJupiterMoon(scene, jupiter, m)
+    const moonP = createJupiterMoon(parent, jupiter, m)
     planets.push(moonP)
   })
 
   return { planets, clickables }
 }
 
-function createPlanet(scene, info, textures, cloudTexture) {
+function createPlanet(parent, info, textures, cloudTexture) {
   const orbitGroup = new THREE.Group()
   orbitGroup.rotation.y = Math.random() * Math.PI * 2
   orbitGroup.rotation.x = THREE.MathUtils.degToRad(info.orbitTilt)
-  scene.add(orbitGroup)
+  parent.add(orbitGroup)
 
   const planetGroup = new THREE.Group()
   planetGroup.position.x = info.orbit
@@ -281,7 +281,7 @@ function createPlanet(scene, info, textures, cloudTexture) {
   }
 }
 
-function createMoon(scene, parentPlanet, moonTexture, distance, size, speed) {
+function createMoon(parent, parentPlanet, moonTexture, distance, size, speed) {
   const moonOrbitGroup = new THREE.Group()
   moonOrbitGroup.position.x = parentPlanet.info.orbit
 
@@ -301,7 +301,7 @@ function createMoon(scene, parentPlanet, moonTexture, distance, size, speed) {
   }
 }
 
-function createJupiterMoon(scene, jupiter, moonData) {
+function createJupiterMoon(parent, jupiter, moonData) {
   const group = new THREE.Group()
   group.position.x = jupiter.info.orbit
 
